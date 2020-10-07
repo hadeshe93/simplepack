@@ -5,18 +5,26 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node -P ./tsconfig.json ./app/test.ts"
+    "start:simplepack": "ts-node -P ./tsconfig.json ./apps/app-simplepack/test.ts",
+    "start:plugin:zip": "tsc ./src/plugins/zip-plugin/index.ts && webpack --config=./apps/app-plugin/webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
   "dependencies": {
     "@babel/core": "^7.11.6",
     "@babel/parser": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
     "@babel/traverse": "^7.11.5",
     "@types/node": "^14.11.2",
-    "babylon": "^6.18.0"
+    "babylon": "^6.18.0",
+    "jszip": "^3.5.0",
+    "loader-runner": "^4.1.0",
+    "spritesmith": "^3.4.0",
+    "webpack-sources": "^2.0.1"
   }
 }
