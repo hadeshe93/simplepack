@@ -52,41 +52,6 @@ class Compiler {
     ast = parser.getAST(filename);
     absPath = filename;
 
-    // if (isEntry) {
-    //   // entry 入口文件的路径已经是绝对路径
-    //   ast = parser.getAST(filename);
-    //   absPath = filename;
-    // } else {
-    //   // 非入口文件的路径需要转化成绝对路径
-    //   if (path.isAbsolute(filename)) {
-    //     absPath = filename;
-    //   } else {
-    //     const entryFileDir = path.dirname(this.entry);
-    //     absPath = path.join(entryFileDir, filename);
-    //   }
-
-    //   const absExt = path.extname(absPath);
-    //   const extNames = ['.ts', '.js', '.json'];
-    //   const isAbsExtValid = extNames.indexOf(absExt) >= 0;
-    //   // 判断文件后缀是否合法，若不合法，则补全
-    //   if (!isAbsExtValid) {
-    //     const fileBasename = path.basename(absPath, absExt);
-    //     const isLastCharPoint = fileBasename.slice(-1) === '.';
-    //     const optionalAbsPathArr = extNames.map(ext => {
-    //       if (isLastCharPoint) {
-    //         return absPath + ext.slice(1);
-    //       } else {
-    //         return absPath + ext;
-    //       }
-    //     });
-    //     const existsAbsPath = optionalAbsPathArr.find(oAbsPath => {
-    //       return fs.existsSync(oAbsPath);
-    //     });
-    //     absPath = existsAbsPath;
-    //   }
-    //   ast = parser.getAST(absPath);
-    // }
-
     const dependencies = parser.getDependencies(ast, absPath);
     const source = parser.transform(ast);
     return {
